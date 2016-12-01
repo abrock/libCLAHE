@@ -39,5 +39,6 @@ cv::Mat applyCLAHE(const cv::Mat& _bgr_image, double const clipLimit, int const 
    // convert back to RGB
    cv::Mat image_clahe;
    cv::cvtColor(lab_image, image_clahe, CV_Lab2BGR);
+    cv::normalize(image_clahe, image_clahe, 0, 255, cv::NORM_MINMAX, CV_8UC3);
    return image_clahe;
 }
