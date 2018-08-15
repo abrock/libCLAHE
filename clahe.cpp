@@ -32,7 +32,7 @@ cv::Mat applyCLAHE(const cv::Mat& _bgr_image, double const clipLimit, int const 
 
     if (bgr_image.channels() == 1) {
         cv::Mat tmp;
-        cv::cvtColor(bgr_image, tmp, CV_GRAY2BGR, 3);
+        cv::cvtColor(bgr_image, tmp, cv::COLOR_GRAY2BGR, 3);
         bgr_image = tmp;
     }
 
@@ -43,7 +43,7 @@ cv::Mat applyCLAHE(const cv::Mat& _bgr_image, double const clipLimit, int const 
     }
 
     cv::Mat lab_image;
-    cv::cvtColor(bgr_image, lab_image, CV_BGR2Lab);
+    cv::cvtColor(bgr_image, lab_image, cv::COLOR_BGR2Lab);
 
     // Extract the L channel
     std::vector<cv::Mat> lab_planes(3);
@@ -73,7 +73,7 @@ cv::Mat applyCLAHE(const cv::Mat& _bgr_image, double const clipLimit, int const 
 
    // convert back to RGB
    cv::Mat image_clahe;
-   cv::cvtColor(lab_image, image_clahe, CV_Lab2BGR);
+   cv::cvtColor(lab_image, image_clahe, cv::COLOR_Lab2BGR);
     cv::normalize(image_clahe, image_clahe, 0, 255, cv::NORM_MINMAX, CV_8UC3);
    return image_clahe;
 }
